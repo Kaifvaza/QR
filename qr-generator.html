@@ -341,8 +341,26 @@
             gap: 15px;
         }
         
-        @media (max-width: 500px) {
-            .row-2 {
+        .row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .row-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .row-2, .row-3, .row-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .row-2, .row-3, .row-4 {
                 grid-template-columns: 1fr;
             }
         }
@@ -402,6 +420,46 @@
         .hidden {
             display: none !important;
         }
+        
+        /* Color Section Box */
+        .color-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .color-section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .color-preview-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid #ddd;
+            display: inline-block;
+        }
+        
+        /* Subsection styling */
+        .subsection {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .subsection-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -441,14 +499,29 @@
                     <div class="font-option" data-font="Impact" style="font-family: Impact;">Impact</div>
                 </div>
             </div>
-            <div class="row-2" style="margin-top: 15px;">
-                <div class="color-input">
-                    <label>Title Color:</label>
-                    <input type="color" id="titleColor" value="#333333">
+            
+            <!-- Text Colors Section -->
+            <div class="color-section">
+                <div class="color-section-title">🎨 Text Colors</div>
+                <div class="row-2">
+                    <div class="color-input">
+                        <label>Title Color:</label>
+                        <input type="color" id="titleColor" value="#333333">
+                    </div>
+                    <div class="color-input">
+                        <label>Tagline Color:</label>
+                        <input type="color" id="taglineColor" value="#666666">
+                    </div>
                 </div>
-                <div class="color-input">
-                    <label>Tagline Color:</label>
-                    <input type="color" id="taglineColor" value="#666666">
+                <div class="preset-colors" data-target="titleColor">
+                    <span style="font-size: 12px; color: #888; margin-right: 5px;">Quick:</span>
+                    <div class="preset-color" style="background: #333333;" data-color="#333333"></div>
+                    <div class="preset-color" style="background: #000000;" data-color="#000000"></div>
+                    <div class="preset-color" style="background: #667eea;" data-color="#667eea"></div>
+                    <div class="preset-color" style="background: #11998e;" data-color="#11998e"></div>
+                    <div class="preset-color" style="background: #f953c6;" data-color="#f953c6"></div>
+                    <div class="preset-color" style="background: #ff6b6b;" data-color="#ff6b6b"></div>
+                    <div class="preset-color" style="background: #e17055;" data-color="#e17055"></div>
                 </div>
             </div>
         </div>
@@ -480,6 +553,48 @@
                 <div class="shape-option" data-shape="classy-rounded">
                     <div class="icon">✨</div>
                     <div class="name">Classy Round</div>
+                </div>
+            </div>
+            
+            <!-- Dots Color Section -->
+            <div class="color-section">
+                <div class="color-section-title">🎨 Dots Color</div>
+                <div class="color-input" style="margin-bottom: 10px;">
+                    <label>Dots Color:</label>
+                    <input type="color" id="dotsColor" value="#000000">
+                </div>
+                
+                <div class="toggle-group" style="margin-top: 10px; margin-bottom: 10px;">
+                    <label class="toggle">
+                        <input type="checkbox" id="useDotsGradient">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span>Use Gradient</span>
+                </div>
+                
+                <div id="dotsGradientColors" class="hidden">
+                    <div class="row-2">
+                        <div class="color-input">
+                            <label>Start:</label>
+                            <input type="color" id="dotsGradientStart" value="#667eea">
+                        </div>
+                        <div class="color-input">
+                            <label>End:</label>
+                            <input type="color" id="dotsGradientEnd" value="#764ba2">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preset-colors" data-target="dotsColor">
+                    <span style="font-size: 12px; color: #888; margin-right: 5px;">Quick:</span>
+                    <div class="preset-color" style="background: #000000;" data-color="#000000"></div>
+                    <div class="preset-color" style="background: #667eea;" data-color="#667eea"></div>
+                    <div class="preset-color" style="background: #11998e;" data-color="#11998e"></div>
+                    <div class="preset-color" style="background: #f953c6;" data-color="#f953c6"></div>
+                    <div class="preset-color" style="background: #ff6b6b;" data-color="#ff6b6b"></div>
+                    <div class="preset-color" style="background: #4834d4;" data-color="#4834d4"></div>
+                    <div class="preset-color" style="background: #00b894;" data-color="#00b894"></div>
+                    <div class="preset-color" style="background: #e17055;" data-color="#e17055"></div>
                 </div>
             </div>
         </div>
@@ -519,16 +634,83 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Corner Colors Section -->
+            <div class="color-section">
+                <div class="color-section-title">🎨 Corner Colors</div>
+                <div class="row-2">
+                    <div class="color-input">
+                        <label>Corner Square:</label>
+                        <input type="color" id="cornerSquareColor" value="#000000">
+                    </div>
+                    <div class="color-input">
+                        <label>Corner Dot:</label>
+                        <input type="color" id="cornerDotColor" value="#000000">
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Corner Square Gradient</div>
+                    <div class="toggle-group" style="margin-top: 0; margin-bottom: 10px;">
+                        <label class="toggle">
+                            <input type="checkbox" id="useCornerSquareGradient">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span>Use Gradient</span>
+                    </div>
+                    <div id="cornerSquareGradientColors" class="hidden">
+                        <div class="row-2">
+                            <div class="color-input">
+                                <label>Start:</label>
+                                <input type="color" id="cornerSquareGradientStart" value="#667eea">
+                            </div>
+                            <div class="color-input">
+                                <label>End:</label>
+                                <input type="color" id="cornerSquareGradientEnd" value="#764ba2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">Corner Dot Gradient</div>
+                    <div class="toggle-group" style="margin-top: 0; margin-bottom: 10px;">
+                        <label class="toggle">
+                            <input type="checkbox" id="useCornerDotGradient">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span>Use Gradient</span>
+                    </div>
+                    <div id="cornerDotGradientColors" class="hidden">
+                        <div class="row-2">
+                            <div class="color-input">
+                                <label>Start:</label>
+                                <input type="color" id="cornerDotGradientStart" value="#11998e">
+                            </div>
+                            <div class="color-input">
+                                <label>End:</label>
+                                <input type="color" id="cornerDotGradientEnd" value="#38ef7d">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preset-colors" data-target="cornerSquareColor">
+                    <span style="font-size: 12px; color: #888; margin-right: 5px;">Quick:</span>
+                    <div class="preset-color" style="background: #000000;" data-color="#000000"></div>
+                    <div class="preset-color" style="background: #667eea;" data-color="#667eea"></div>
+                    <div class="preset-color" style="background: #11998e;" data-color="#11998e"></div>
+                    <div class="preset-color" style="background: #f953c6;" data-color="#f953c6"></div>
+                    <div class="preset-color" style="background: #ff6b6b;" data-color="#ff6b6b"></div>
+                    <div class="preset-color" style="background: #4834d4;" data-color="#4834d4"></div>
+                </div>
+            </div>
         </div>
         
-        <!-- Colors -->
+        <!-- Background Colors -->
         <div class="card">
-            <h3 class="section-title">🎨 Colors</h3>
+            <h3 class="section-title">🖼️ Background Colors</h3>
             <div class="color-group">
-                <div class="color-input">
-                    <label>QR Color:</label>
-                    <input type="color" id="dotsColor" value="#000000">
-                </div>
                 <div class="color-input">
                     <label>QR Background:</label>
                     <input type="color" id="bgColor" value="#ffffff">
@@ -543,36 +725,16 @@
                 </div>
             </div>
             
-            <div class="toggle-group">
-                <label class="toggle">
-                    <input type="checkbox" id="useGradient">
-                    <span class="toggle-slider"></span>
-                </label>
-                <span>Use Gradient for QR</span>
-            </div>
-            
-            <div id="gradientColors" class="hidden" style="margin-top: 15px;">
-                <div class="color-group">
-                    <div class="color-input">
-                        <label>Gradient Start:</label>
-                        <input type="color" id="gradientStart" value="#667eea">
-                    </div>
-                    <div class="color-input">
-                        <label>Gradient End:</label>
-                        <input type="color" id="gradientEnd" value="#764ba2">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="preset-colors">
-                <div class="preset-color" style="background: #000000;" data-color="#000000"></div>
-                <div class="preset-color" style="background: #667eea;" data-color="#667eea"></div>
-                <div class="preset-color" style="background: #11998e;" data-color="#11998e"></div>
-                <div class="preset-color" style="background: #f953c6;" data-color="#f953c6"></div>
-                <div class="preset-color" style="background: #ff6b6b;" data-color="#ff6b6b"></div>
-                <div class="preset-color" style="background: #4834d4;" data-color="#4834d4"></div>
-                <div class="preset-color" style="background: #00b894;" data-color="#00b894"></div>
-                <div class="preset-color" style="background: #e17055;" data-color="#e17055"></div>
+            <div class="preset-colors" data-target="cardBgColor" style="margin-top: 15px;">
+                <span style="font-size: 12px; color: #888; margin-right: 5px;">Card BG:</span>
+                <div class="preset-color" style="background: #ffffff;" data-color="#ffffff"></div>
+                <div class="preset-color" style="background: #f8f9fa;" data-color="#f8f9fa"></div>
+                <div class="preset-color" style="background: #fff3e0;" data-color="#fff3e0"></div>
+                <div class="preset-color" style="background: #e3f2fd;" data-color="#e3f2fd"></div>
+                <div class="preset-color" style="background: #f3e5f5;" data-color="#f3e5f5"></div>
+                <div class="preset-color" style="background: #e8f5e9;" data-color="#e8f5e9"></div>
+                <div class="preset-color" style="background: #1a1a2e;" data-color="#1a1a2e"></div>
+                <div class="preset-color" style="background: #2d3436;" data-color="#2d3436"></div>
             </div>
         </div>
         
@@ -650,16 +812,31 @@
             });
         });
         
-        // Preset colors
-        document.querySelectorAll('.preset-color').forEach(preset => {
-            preset.addEventListener('click', function() {
-                document.getElementById('dotsColor').value = this.dataset.color;
+        // Preset colors with target support
+        document.querySelectorAll('.preset-colors').forEach(container => {
+            container.querySelectorAll('.preset-color').forEach(preset => {
+                preset.addEventListener('click', function() {
+                    const target = container.dataset.target;
+                    if (target) {
+                        document.getElementById(target).value = this.dataset.color;
+                    }
+                });
             });
         });
         
-        // Gradient toggle
-        document.getElementById('useGradient').addEventListener('change', function() {
-            document.getElementById('gradientColors').classList.toggle('hidden', !this.checked);
+        // Dots Gradient toggle
+        document.getElementById('useDotsGradient').addEventListener('change', function() {
+            document.getElementById('dotsGradientColors').classList.toggle('hidden', !this.checked);
+        });
+        
+        // Corner Square Gradient toggle
+        document.getElementById('useCornerSquareGradient').addEventListener('change', function() {
+            document.getElementById('cornerSquareGradientColors').classList.toggle('hidden', !this.checked);
+        });
+        
+        // Corner Dot Gradient toggle
+        document.getElementById('useCornerDotGradient').addEventListener('change', function() {
+            document.getElementById('cornerDotGradientColors').classList.toggle('hidden', !this.checked);
         });
         
         // Size slider
@@ -710,27 +887,78 @@
             }
             
             const size = parseInt(document.getElementById('qrSize').value);
-            const dotsColor = document.getElementById('dotsColor').value;
             const bgColor = document.getElementById('bgColor').value;
-            const useGradient = document.getElementById('useGradient').checked;
-            const gradientStart = document.getElementById('gradientStart').value;
-            const gradientEnd = document.getElementById('gradientEnd').value;
             
+            // Dots options
+            const dotsColor = document.getElementById('dotsColor').value;
+            const useDotsGradient = document.getElementById('useDotsGradient').checked;
+            const dotsGradientStart = document.getElementById('dotsGradientStart').value;
+            const dotsGradientEnd = document.getElementById('dotsGradientEnd').value;
+            
+            // Corner Square options
+            const cornerSquareColor = document.getElementById('cornerSquareColor').value;
+            const useCornerSquareGradient = document.getElementById('useCornerSquareGradient').checked;
+            const cornerSquareGradientStart = document.getElementById('cornerSquareGradientStart').value;
+            const cornerSquareGradientEnd = document.getElementById('cornerSquareGradientEnd').value;
+            
+            // Corner Dot options
+            const cornerDotColor = document.getElementById('cornerDotColor').value;
+            const useCornerDotGradient = document.getElementById('useCornerDotGradient').checked;
+            const cornerDotGradientStart = document.getElementById('cornerDotGradientStart').value;
+            const cornerDotGradientEnd = document.getElementById('cornerDotGradientEnd').value;
+            
+            // Build dots options
             let dotsOptions = {
                 type: getSelectedShape('dotsShape'),
             };
             
-            if (useGradient) {
+            if (useDotsGradient) {
                 dotsOptions.gradient = {
                     type: 'linear',
                     rotation: 45,
                     colorStops: [
-                        { offset: 0, color: gradientStart },
-                        { offset: 1, color: gradientEnd }
+                        { offset: 0, color: dotsGradientStart },
+                        { offset: 1, color: dotsGradientEnd }
                     ]
                 };
             } else {
                 dotsOptions.color = dotsColor;
+            }
+            
+            // Build corner square options
+            let cornersSquareOptions = {
+                type: getSelectedShape('cornerSquareShape'),
+            };
+            
+            if (useCornerSquareGradient) {
+                cornersSquareOptions.gradient = {
+                    type: 'linear',
+                    rotation: 45,
+                    colorStops: [
+                        { offset: 0, color: cornerSquareGradientStart },
+                        { offset: 1, color: cornerSquareGradientEnd }
+                    ]
+                };
+            } else {
+                cornersSquareOptions.color = cornerSquareColor;
+            }
+            
+            // Build corner dot options
+            let cornersDotOptions = {
+                type: getSelectedShape('cornerDotShape'),
+            };
+            
+            if (useCornerDotGradient) {
+                cornersDotOptions.gradient = {
+                    type: 'linear',
+                    rotation: 45,
+                    colorStops: [
+                        { offset: 0, color: cornerDotGradientStart },
+                        { offset: 1, color: cornerDotGradientEnd }
+                    ]
+                };
+            } else {
+                cornersDotOptions.color = cornerDotColor;
             }
             
             const options = {
@@ -741,14 +969,8 @@
                 backgroundOptions: {
                     color: bgColor
                 },
-                cornersSquareOptions: {
-                    type: getSelectedShape('cornerSquareShape'),
-                    color: dotsColor
-                },
-                cornersDotOptions: {
-                    type: getSelectedShape('cornerDotShape'),
-                    color: dotsColor
-                },
+                cornersSquareOptions: cornersSquareOptions,
+                cornersDotOptions: cornersDotOptions,
                 imageOptions: {
                     crossOrigin: "anonymous",
                     margin: 5,
